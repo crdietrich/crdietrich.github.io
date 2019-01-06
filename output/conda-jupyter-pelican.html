@@ -1268,7 +1268,7 @@ themes</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><p>Always stay on the <code>develop</code> Git branch unless you're cleaning up extra files like <code>__pycache__</code> or adding another <code>.gitignore</code>.  <code>ghp-import</code> will do the work of updating the <code>master</code> branch.</p>
+<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><p>Always stay on the <code>develop</code> Git branch unless you're cleaning up extra files like <code>__pycache__</code> or adding another <code>.gitignore</code>.  <code>ghp-import</code> will do the work of updating the <code>master</code> branch.  If you do switch branches while on <code>master</code> be aware Jupyter may loose the Notebook file it has open as when the repository checks out a file structure without it present.  If that happens, you can lose unsaved work.</p>
 <h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
 <code>(blog) ~/blog-source $ pelican content</code></p>
 <p>Then start a local test server with:<br>
