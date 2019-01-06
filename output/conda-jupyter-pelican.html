@@ -1209,17 +1209,7 @@ Summary: Building a Python Blog using Conda and Pelican</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="8.-Create-Github-Page--and-setup-local-git-configuration">8. Create Github Page  and setup local git configuration<a class="anchor-link" href="#8.-Create-Github-Page--and-setup-local-git-configuration">&#182;</a></h3><p>Up to this point, we've successfully installed Python, Jupyter and Pelican, written content in Jupyter, converted it into static HTML and viewed it on a local server.  As it is we have source <code>.py</code> files, various configuration files and folders, Jupyter Notebooks and the static output HTML in the <code>output</code>.</p>
-<p>To publish our site, as currently storing in the <code>output</code> folder, we must add the files to the root directory and <code>master</code> branch of a git repository and push that to Github.  To keep everything together in one organized repository (and completely backed up on Github), we'll use a branch to store the source files.  When set up, we'll have two branches:</p>
-<h5 id="master-branch">master branch<a class="anchor-link" href="#master-branch">&#182;</a></h5><h5 id="A.-Setup-Github-Repository">A. Setup Github Repository<a class="anchor-link" href="#A.-Setup-Github-Repository">&#182;</a></h5><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
-<h5 id="B.-Setup-Local-Repository">B. Setup Local Repository<a class="anchor-link" href="#B.-Setup-Local-Repository">&#182;</a></h5><p>On your local blog directory <code>blog-source</code>, initialize a new repository and add the new remote origin on github to the local git repository:</p>
-<p><code>(blog) ~/blog-source $ git init  
-(blog) ~/blog-source $ git remote add origin git@github.com:your_username/your_username.github.io.git</code></p>
-<p>Next, create a new branch called <code>develop</code> to keep Python, Jupyter and Pelican source files in:<br>
-<code>(blog) ~/code/blog-source $ git checkout -b develop
-Switched to a new branch 'develop'</code></p>
-<p>Into the working directory <code>blog-source</code> create a file called <code>.gitignore</code> and copy the contents of <a href="https://github.com/github/gitignore/blob/master/Python.gitignore">this file</a> into it.  This was a great suggestion by Vik, it really keeps the repo clean later when we start working on projects with IDEs that litter the working directory.</p>
-<p>On Github, confirm in the repository settings under GitHub Pages 'Your site is published at <a href="https://your_username.github.io">https://your_username.github.io</a>'</p>
+<h3 id="8.-Create-Github-Page-and-setup-Pelican-configuration">8. Create Github Page and setup Pelican configuration<a class="anchor-link" href="#8.-Create-Github-Page-and-setup-Pelican-configuration">&#182;</a></h3><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
 <p>Locally, edit the <code>SITEURL</code> variable inside the <code>publishconf.py</code> to your site URL</p>
 
 </div>
@@ -1229,15 +1219,62 @@ Switched to a new branch 'develop'</code></p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><h5 id="A.-Managing-Git-branches-for-work-in-progress">A. Managing Git branches for work in progress<a class="anchor-link" href="#A.-Managing-Git-branches-for-work-in-progress">&#182;</a></h5><p>You can either manually add files to the content folder or manage posts with git.  Everything commited to the <code>master</code> branch will be what Github Pages uses to publish, so any work in progress can be stored in branches for each post and merged to master as part of publishing.  A branch for one post can be made with:<br>
-<code>$ git checkout -b dev_branch_for_a_post</code></p>
-<h5 id="B.-Work-Locally-and-check-static-HTML-build">B. Work Locally and check static HTML build<a class="anchor-link" href="#B.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
+<h3 id="9.-Create-Git-branch-and-publish-to-Github">9. Create Git branch and publish to Github<a class="anchor-link" href="#9.-Create-Git-branch-and-publish-to-Github">&#182;</a></h3><p>Up to this point, we've successfully installed Python, Jupyter and Pelican, written content in Jupyter, converted it into static HTML and viewed it on a local server.  We have source files consisting of <code>.py</code> files, various configuration files and folders and Jupyter Notebooks while the the static HTML site we previewed locally is in the <code>output</code> folder.</p>
+<p>To publish our site, as currently storing in the <code>output</code> folder, we must move the files to the root directory and <code>master</code> branch of a git repository and push that to Github.  To keep everything together in one organized repository (and completely backed up on Github), we'll use a branch to store the source files.</p>
+<h5 id="A.-Setup-Github-Repository">A. Setup Github Repository<a class="anchor-link" href="#A.-Setup-Github-Repository">&#182;</a></h5><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
+<h5 id="B.-Setup-Local-Repository">B. Setup Local Repository<a class="anchor-link" href="#B.-Setup-Local-Repository">&#182;</a></h5><p>On your local blog directory <code>blog-source</code>, initialize a new repository and add the new remote origin on github to the local git repository:</p>
+<p><code>(blog) ~/blog-source $ git init  
+(blog) ~/blog-source $ git remote add origin git@github.com:your_username/your_username.github.io.git</code></p>
+<p>Next, create a new branch called <code>develop</code> to keep Python, Jupyter and Pelican source files in:<br>
+<code>(blog) ~/code/blog-source $ git checkout -b develop
+Switched to a new branch 'develop'</code></p>
+<p>Into the working directory <code>blog-source</code> create a file called <code>.gitignore</code> and copy the contents of <a href="https://github.com/github/gitignore/blob/master/Python.gitignore">this file</a> into it.  This was a great suggestion by Vik, it really keeps the repo clean later when we start working on projects with IDEs that litter the working directory.</p>
+<p>Locally, edit the <code>SITEURL</code> variable inside the <code>publishconf.py</code> to your site URL <code>your_username.github.io</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="10.-Use-ghp-import-to-populate-master-branch">10. Use ghp-import to populate master branch<a class="anchor-link" href="#10.-Use-ghp-import-to-populate-master-branch">&#182;</a></h3><p>Everything commited to the <code>master</code> branch of your repository will be what Github Pages serves as your site and our source content is in the <code>develop</code> branch.  To create a <code>master</code> branch that contains our static HTML, we'll use the <a href="https://github.com/davisp/ghp-import">ghp-import</a> tool to move files from one branch to another.</p>
+<p>NOTE: USING ghp-import IS DESTRUCTIVE.  Anything in your <code>master</code> or <code>ghp-pages</code> branch will be automatically deleted without confirmation.</p>
+<p>The command we'll use is:<br>
+<code>(blog) ~/code/blog-source $ ghp-import -b master output</code></p>
+<p>Since this isn't immediately obvious, let's break down the usage:<br>
+<code>-b master</code> = branch to write TO<br>
+<code>output</code> = directory in CURRENT branch to write FROM</p>
+<p>After running <code>ghp-import</code>, we'll have two branches in <code>blog-source</code> that when active look like:</p>
+<h5 id="develop-branch">develop branch<a class="anchor-link" href="#develop-branch">&#182;</a></h5>
+<pre><code>content
+drafts
+environment.yml
+Makefile
+output
+pelicanconf.py
+plugins
+publishconf.py
+__pycache__
+tasks.py
+themes</code></pre>
+<h5 id="master-branch">master branch<a class="anchor-link" href="#master-branch">&#182;</a></h5>
+<pre><code>TODO</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
 <code>(blog) ~/blog-source $ pelican content</code></p>
 <p>Then start a local test server with:<br>
 <code>(blog) ~/blog-source $ pelican -l</code></p>
 <p>Finally, check the build locally by opening:<br>
 <code>http://localhost:8000/</code></p>
-<h5 id="C.-Rebuild-for-Online-and-push-to-Github">C. Rebuild for Online and push to Github<a class="anchor-link" href="#C.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
+<h5 id="B.-Rebuild-for-Online-and-push-to-Github">B. Rebuild for Online and push to Github<a class="anchor-link" href="#B.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
 <code>(blog) ~/blog-source $ pelican content -s publishconf.py</code></p>
 <p>Use the <code>ghp-import</code> tool to import the output folder to the <code>master</code> branch of your repository.</p>
 <p>Push your files to Github:<br>
@@ -1254,6 +1291,17 @@ Switched to a new branch 'develop'</code></p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="10.-Next-Steps">10. Next Steps<a class="anchor-link" href="#10.-Next-Steps">&#182;</a></h3><p>Now that the site is up online, add more content and if you want any extended features, revisit <code>publishconfi.py</code> to enable analytics, comments, and feeds.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Snippets">Snippets<a class="anchor-link" href="#Snippets">&#182;</a></h4><p>On Github, confirm in the repository settings under GitHub Pages 'Your site is published at <a href="https://your_username.github.io">https://your_username.github.io</a>'</p>
+<p>Everything commited to the <code>master</code> branch of your repository will be what Github Pages uses to publish, so any work in progress can be stored in branches for each post and merged to master as part of publishing.  A branch for one post can be made with:<br>
+<code>$ git checkout -b dev_branch_for_a_post</code></p>
 
 </div>
 </div>
