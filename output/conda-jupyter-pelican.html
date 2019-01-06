@@ -1275,6 +1275,8 @@ themes</code></pre>
 <code>(blog) ~/blog-source $ pelican -l</code></p>
 <p>Finally, check the build locally by opening:<br>
 <code>http://localhost:8000/</code></p>
+<p>Keep a remote copy of your source files on Github:<br>
+<code>$ git push origin develop</code></p>
 <h5 id="B.-Rebuild-for-Online-and-push-to-Github">B. Rebuild for Online and push to Github<a class="anchor-link" href="#B.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
 <code>(blog) ~/blog-source $ pelican content -s publishconf.py</code></p>
 <p>Use the <code>ghp-import</code> tool to import the output folder of the <code>develop</code> branch to the root directory of the <code>master</code> branch of your repository.<br>
