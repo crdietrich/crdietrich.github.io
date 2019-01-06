@@ -1,0 +1,27 @@
+name: blog
+
+channels:
+    - defaults
+    - conda-forge
+    - plotly
+
+dependencies:
+    - markdown
+    - beautifulsoup4
+    - pelican
+    - numpy
+    - scipy
+    - pandas
+    - scikit-learn
+    - tensorflow
+    - matplotlib
+    - plotly
+    - jupyter
+    - nbconvert
+    - ghp-import
+    - spyder
+    - git
+    - pip
+    - pip:
+        - cufflinks
+

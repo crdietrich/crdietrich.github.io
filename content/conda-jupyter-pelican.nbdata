@@ -1,0 +1,8 @@
+Title: Building a Blog with Conda, Jupyter and Pelican
+Summary: Using Conda is a great way to build reproducible, transportable tools and data products.  Learn how to set up a blog using Conda, Jupyter and Pelican.
+Slug: conda-jupyter-pelican
+Date: 2018-12-08 18:00
+Category: posts
+Tags: Python, Jupyter, Conda
+Author: Colin Dietrich
+
