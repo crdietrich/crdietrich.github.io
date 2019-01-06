@@ -1268,7 +1268,8 @@ themes</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
+<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><p>Always stay on the <code>develop</code> Git branch unless you're cleaning up extra files like <code>__pycache__</code> or adding another <code>.gitignore</code>.  <code>ghp-import</code> will do the work of updating the <code>master</code> branch.  If you do switch branches while on <code>master</code> be aware Jupyter may loose the Notebook file it has open as when the repository checks out a file structure without it present.  If that happens, you can lose unsaved work.</p>
+<h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
 <code>(blog) ~/blog-source $ pelican content</code></p>
 <p>Then start a local test server with:<br>
 <code>(blog) ~/blog-source $ pelican -l</code></p>
@@ -1276,12 +1277,12 @@ themes</code></pre>
 <code>http://localhost:8000/</code></p>
 <h5 id="B.-Rebuild-for-Online-and-push-to-Github">B. Rebuild for Online and push to Github<a class="anchor-link" href="#B.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
 <code>(blog) ~/blog-source $ pelican content -s publishconf.py</code></p>
-<p>Use the <code>ghp-import</code> tool to import the output folder to the <code>master</code> branch of your repository.</p>
+<p>Use the <code>ghp-import</code> tool to import the output folder of the <code>develop</code> branch to the root directory of the <code>master</code> branch of your repository.<br>
+<code>$ ghp-import -b master output</code></p>
 <p>Push your files to Github:<br>
 <code>$ git push origin master</code></p>
-<p>Finally, check your site is online at:<br>
+<p>Check your site is online and rejoice!<br>
 <code>https://your_username.github.io</code></p>
-<p>I found one challenge was setting the pelican-ipynb as a submodule, Github couldn't initially clone the repository.</p>
 
 </div>
 </div>
@@ -1290,34 +1291,10 @@ themes</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="10.-Next-Steps">10. Next Steps<a class="anchor-link" href="#10.-Next-Steps">&#182;</a></h3><p>Now that the site is up online, add more content and if you want any extended features, revisit <code>publishconfi.py</code> to enable analytics, comments, and feeds.</p>
+<h3 id="10.-Next-Steps">10. Next Steps<a class="anchor-link" href="#10.-Next-Steps">&#182;</a></h3><p>Now that the site is up online, add more Notebooks to <code>content</code> and if you want any extended features, revisit <code>publishconfi.py</code> to enable analytics, comments, and feeds.  You can use the <code>content</code> folder as a working directory for your projects, but I find organizing myself in a separate directory and conda environment a good first publishing step before including in the <code>blog-source</code> directory.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Snippets">Snippets<a class="anchor-link" href="#Snippets">&#182;</a></h4><p>On Github, confirm in the repository settings under GitHub Pages 'Your site is published at <a href="https://your_username.github.io">https://your_username.github.io</a>'</p>
-<p>Everything commited to the <code>master</code> branch of your repository will be what Github Pages uses to publish, so any work in progress can be stored in branches for each post and merged to master as part of publishing.  A branch for one post can be made with:<br>
-<code>$ git checkout -b dev_branch_for_a_post</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
  
 
