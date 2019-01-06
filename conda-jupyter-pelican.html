@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Building a Blog with Conda, Jupyter and Pelican</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="https://crdietrich.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://crdietrich.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://crdietrich.github.io/theme/pygment.css" />
+
+        <script src="https://crdietrich.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- CRD <header id="banner" class="body">-->
+            <div style="float:left;">
+                  <h3>&nbsp;<a href="https://crdietrich.github.io/">A Local Maxima <strong></strong></a></h3>
+            </div><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+
+              <ul style="float:right;" class="columns">
+                <li><a href="https://crdietrich.github.io/">Home</a></li>
+
+                    <li><a href="https://crdietrich.github.io/pages/about.html">About</a></li>
+              </ul>
+            </div>
+
+<!-- CRD
+<section id="content" class="body">-->
+   <!-- CRD
+   <div class="row">-->
+        <!-- CRD
+        <div class="eleven columns">-->
+
+
+            <header>
+              <h3 class="entry-title">
+                <a href="https://crdietrich.github.io/conda-jupyter-pelican.html" rel="bookmark"
+                   title="Permalink to Building a Blog with Conda, Jupyter and Pelican">Building a Blog with Conda, Jupyter and Pelican</a></h3>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2018-12-08T18:00:00-08:00">
+                Sat 08 December 2018
+              </abbr>
+              <!-- CRD
+              <address class="vcard author">By
+                <a class="url fn" href="https://crdietrich.github.io/author/colin-dietrich.html"> Colin Dietrich</a>
+              </address>
+              -->
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using Conda environments is a great way to create reproducible, cross-platform data products.  I used virtual environments a bit before reading Jake VanderPlas' <a href="http://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/">great article</a> on conda and now I've completely made the switch.  Maintaining separate interpreters for projects is nice and so is avoiding compiling issues on Windows, however the best reason to use conda is the <code>environment.yml</code> file.</p>
+<p>Building a conda environment from a file is very similiar to using a Makefile - it will reliably recreate a Python interpreter with specific libraries installed.  This isn't useful at the start of a project but after wrangling data and installing libraries of various utility you will ideally end up with a product to share.  This is real power of the conda environment file: the ability to export the state of the conda environment including dependencies to a file and commit that file to the project repository.  Now you can deploy code, model outputs and the execution environment to a server, share it with a friend or redo your own work two years from now on a new machine with no fuss!</p>
+<p>The magic is as simple as:<br>
+<code>$ conda env export &gt; environment.yml</code></p>
+<p>This command and reference for managing conda environments is available <a href="https://conda.io/docs/user-guide/tasks/manage-environments.html">here.</a></p>
+<p>What is truely next-level about conda is the ablity to install non-Python tools with conda.  From wrapping some <a href="https://anaconda.org/conda-forge/octave">MATLAB</a>, calling <a href="https://anaconda.org/r/r-ggplot2">ggplot</a> or just curious about <a href="https://anaconda.org/conda-forge/julia">Julia</a> you can reproducible include that in your project.</p>
+<p>Jupyter is flexible tool to explore and present results and needs very little introduction these days since even <a href="https://www.nature.com/articles/d41586-018-07196-1">Nature is writing about it</a>.  One of its less discussed features is relevant to conda, namely Jupyter's ability to use <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">multiple kernals</a>.  So after installing R via conda, you can run R scripts (or Julia or MATLAB or Perl etc).</p>
+<p>I figured a good Hello World to this blog would be the setup and in that regard I followed Vik Paruchuri''s post <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">Building a Data Science Portfolio: Setting Up a Blog</a> which lays out the pelican static site process well and discusses some trade offs.  Ducan Lock had a good review of <a href="http://duncanlock.net/blog/2016/03/05/how-i-upgraded-this-website-to-pelican-36/">changes required for newer installs of Pelican.</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-Install-Miniconda-for-your-Platform">1. Install Miniconda for your Platform<a class="anchor-link" href="#1.-Install-Miniconda-for-your-Platform">&#182;</a></h3><p>I prefer to use Miniconda, installation and environment management instructions can be found at:</p>
+<p><a href="https://conda.io/docs/user-guide/install/index.html">https://conda.io/docs/user-guide/install/index.html</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Create-working-directory-and-files">2. Create working directory and files<a class="anchor-link" href="#2.-Create-working-directory-and-files">&#182;</a></h3><p>Once conda is installed, create a folder and change directory into it, in this post we'll call it <code>blog-source</code></p>
+<p>Next, make a file called <code>environment.yml</code> in <code>blog-source</code> and put the following in it:</p>
+
+<pre><code>name: pelican-blog
+
+channels:
+    - defaults
+    - conda-forge
+    - plotly
+
+dependencies:
+    - markdown
+    - beautifulsoup4
+    - pelican
+    - numpy
+    - scipy
+    - pandas
+    - scikit-learn
+    - tensorflow
+    - matplotlib
+    - plotly
+    - jupyter
+    - nbconvert
+    - ghp-import
+    - spyder
+    - git
+    - pip
+    - pip:
+        - cufflinks</code></pre>
+<p>This is has a few of the libraries that are useful for data driven projects.  Vik's post lists specific library versions which are now out of date, I prefer to specify all requirements and let the package manager sort the dependencies during environment creation.  If in the future I need a specific build I will export the environment state as described above to a new <code>environment.yml</code> file and document what it is for.  The export process will save the library version, i.e. <code>- numpy=1.13.1=py36_0</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3.-Create-Conda-environment-and-activate-it">3. Create Conda environment and activate it<a class="anchor-link" href="#3.-Create-Conda-environment-and-activate-it">&#182;</a></h3><p>Inside <code>blog-source</code> run:<br>
+<code>$ conda env create -f environment.yml</code><br>
+To activate the conda environment in Mac OSX or Linux:</p>
+<p><code>$ source activate pelican-blog</code><br>
+and in Windows:</p>
+<p><code>&gt; activate pelican-blog</code><br>
+Check installed libraries work:</p>
+
+<pre><code>(pelican-blog) ~/blog-source$ python  
+Python 3.6.2 |Continuum Analytics, Inc.| (default, Jul 20 2017, 13:51:32)  
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux  
+Type "help", "copyright", "credits" or "license" for more information.  
+&gt;&gt;&gt; import markdown  
+&gt;&gt;&gt; import bs4  
+&gt;&gt;&gt; import pelican
+&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; import scipy
+&gt;&gt;&gt; import pandas
+&gt;&gt;&gt; import sklearn
+&gt;&gt;&gt; import tensorflow
+&gt;&gt;&gt; import matplotlib
+&gt;&gt;&gt; import plotly
+&gt;&gt;&gt; import cufflinks</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="4.-Build-Pelican-site">4. Build Pelican site<a class="anchor-link" href="#4.-Build-Pelican-site">&#182;</a></h3><p>Run the pelican-quickstart command in the <code>blog-source</code> folder to begin the interactive setup script:</p>
+<p><code>(pelican-blog) ~/blog-source$ pelican-quickstart</code></p>
+<p>Answer the setup questions, choose the default if you don't know the answer.  After it completes, you should have <code>output</code> and <code>content</code> folders as well as several new files including <code>pelicanconf.py</code> and <code>publishconf.py</code></p>
+<p>If you want to use a favicon, generate one (I used this <a href="https://favicon.io/favicon-generator/">site</a>) and put it in a folder called <code>extra</code> inside the <code>content</code> folder.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.-Install-Git-and-Pelican-Jupyter-plugin">5. Install Git and Pelican Jupyter plugin<a class="anchor-link" href="#5.-Install-Git-and-Pelican-Jupyter-plugin">&#182;</a></h3><p>We'll need git to publish our blog as well as install the Jupyter Pelican plugin.  On Linux and Mac Git may already be installed, it is included in the conda environment file so if you're working in Windows it will be available.</p>
+<p>First confirm git is available:<br>
+<code>$ git --version  
+git version 2.7.4</code></p>
+<p>Then initialize a local repository in <code>blog-source</code>:<br>
+<code>(pelican-blog) ~/blog-source $ git init</code></p>
+<p>Create a destination for the Jupyter plugin:<br>
+<code>(pelican-blog) ~/blog-source $ mkdir plugins</code></p>
+<p>Install pelican-ipynb:<br>
+<code>(pelican-blog) ~/blog-source $ git submodule add git://github.com/danielfrg/pelican-ipynb.git plugins/ipynb</code></p>
+<p>There should be a <code>.gitmodules</code> file and inside the <code>plugins</code> folder should be a folder called <code>ipynb</code></p>
+<p>Activate and configure the plugin by editing the <code>pelicanconf.py</code> file to have the following at the end of the file. Note that the variables are all lists, older versions of Pelican allowed strings.</p>
+
+<pre><code>MARKUP = ('md', 'ipynb')  
+PLUGIN_PATHS = ['./plugins']  
+PLUGINS = ['ipynb.markup']  
+IGNORE_FILES =['.ipynb_checkpoints']</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6.-Write-first-post">6. Write first post<a class="anchor-link" href="#6.-Write-first-post">&#182;</a></h3><p>Each post requires two files, a Jupyter notebook and a meta data file.  In older versions of Pelican, the metadata file extension was <code>.ipynb-meta</code> however this file is now <code>.nbdata</code>.  The internals of the <code>.nbdata</code> are:</p>
+
+<pre><code>Title: First Post
+Slug: conda-jupyter-pelican
+Date: 2018-12-08 18:00
+Category: posts
+Tags: Python Jupyter Conda
+Author: Colin Dietrich
+Summary: Building a Python Blog using Conda and Pelican</code></pre>
+<p>The fields are straight forward except for 'Slug' which wikipedia has a <a href="https://en.wikipedia.org/wiki/Clean_URL#Slug">nice explaination.</a> - it is the file name of the source notebook used in the URL, the companion .nbdata file should be named the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="7.-Generate-Static-HTML">7. Generate Static HTML<a class="anchor-link" href="#7.-Generate-Static-HTML">&#182;</a></h3><p>If you want to use a custom theme, look at the <a href="https://github.com/getpelican/pelican-themes">gallery</a> and download one into a local folder.  I use <code>themes</code> inside <code>blog-source</code> so I can commit it and keep it with the rest of the site source.  To tell Pelican to use the theme <code>your_custom_theme</code> inside <code>themes</code>, open <code>pelicanconf.py</code> and add the following line:<br>
+<code>THEME = '-/blog/themes/your_custom_theme'</code></p>
+<p>From the root of blog-source again, generat the static HTML with:<br>
+<code>(blog) ~/blog-source$ pelican content</code></p>
+<p>Then switch to the output folder and run:<br>
+<code>(blog) ~/blog-source/output$ pelican -l</code></p>
+<p>Open <code>localhost:8000</code> in a browser to view a local copy of your site.</p>
+<p>To quit the local test server, press <code>ctrl+C</code> in the terminal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8.-Create-Github-Page-and-setup-Pelican-configuration">8. Create Github Page and setup Pelican configuration<a class="anchor-link" href="#8.-Create-Github-Page-and-setup-Pelican-configuration">&#182;</a></h3><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
+<p>Locally, edit the <code>SITEURL</code> variable inside the <code>publishconf.py</code> to your site URL</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="9.-Create-Git-branch-and-publish-to-Github">9. Create Git branch and publish to Github<a class="anchor-link" href="#9.-Create-Git-branch-and-publish-to-Github">&#182;</a></h3><p>Up to this point, we've successfully installed Python, Jupyter and Pelican, written content in Jupyter, converted it into static HTML and viewed it on a local server.  We have source files consisting of <code>.py</code> files, various configuration files and folders and Jupyter Notebooks while the the static HTML site we previewed locally is in the <code>output</code> folder.</p>
+<p>To publish our site, as currently storing in the <code>output</code> folder, we must move the files to the root directory and <code>master</code> branch of a git repository and push that to Github.  To keep everything together in one organized repository (and completely backed up on Github), we'll use a branch to store the source files.</p>
+<h5 id="A.-Setup-Github-Repository">A. Setup Github Repository<a class="anchor-link" href="#A.-Setup-Github-Repository">&#182;</a></h5><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
+<h5 id="B.-Setup-Local-Repository">B. Setup Local Repository<a class="anchor-link" href="#B.-Setup-Local-Repository">&#182;</a></h5><p>On your local blog directory <code>blog-source</code>, initialize a new repository and add the new remote origin on github to the local git repository:</p>
+<p><code>(blog) ~/blog-source $ git init  
+(blog) ~/blog-source $ git remote add origin git@github.com:your_username/your_username.github.io.git</code></p>
+<p>Next, create a new branch called <code>develop</code> to keep Python, Jupyter and Pelican source files in:<br>
+<code>(blog) ~/code/blog-source $ git checkout -b develop
+Switched to a new branch 'develop'</code></p>
+<p>Into the working directory <code>blog-source</code> create a file called <code>.gitignore</code> and copy the contents of <a href="https://github.com/github/gitignore/blob/master/Python.gitignore">this file</a> into it.  This was a great suggestion by Vik, it really keeps the repo clean later when we start working on projects with IDEs that litter the working directory.</p>
+<p>Locally, edit the <code>SITEURL</code> variable inside the <code>publishconf.py</code> to your site URL <code>your_username.github.io</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="10.-Use-ghp-import-to-populate-master-branch">10. Use ghp-import to populate master branch<a class="anchor-link" href="#10.-Use-ghp-import-to-populate-master-branch">&#182;</a></h3><p>Everything commited to the <code>master</code> branch of your repository will be what Github Pages serves as your site and our source content is in the <code>develop</code> branch.  To create a <code>master</code> branch that contains our static HTML, we'll use the <a href="https://github.com/davisp/ghp-import">ghp-import</a> tool to move files from one branch to another.</p>
+<p>NOTE: USING ghp-import IS DESTRUCTIVE.  Anything in your <code>master</code> or <code>ghp-pages</code> branch will be automatically deleted without confirmation.</p>
+<p>The command we'll use is:<br>
+<code>(blog) ~/code/blog-source $ ghp-import -b master output</code></p>
+<p>Since this isn't immediately obvious, let's break down the usage:<br>
+<code>-b master</code> = branch to write TO<br>
+<code>output</code> = directory in CURRENT branch to write FROM</p>
+<p>After running <code>ghp-import</code>, we'll have two branches in <code>blog-source</code> that when active look like:</p>
+<h5 id="develop-branch">develop branch<a class="anchor-link" href="#develop-branch">&#182;</a></h5>
+<pre><code>content
+drafts
+environment.yml
+Makefile
+output
+pelicanconf.py
+plugins
+publishconf.py
+__pycache__
+tasks.py
+themes</code></pre>
+<h5 id="master-branch">master branch<a class="anchor-link" href="#master-branch">&#182;</a></h5>
+<pre><code>TODO</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
+<code>(blog) ~/blog-source $ pelican content</code></p>
+<p>Then start a local test server with:<br>
+<code>(blog) ~/blog-source $ pelican -l</code></p>
+<p>Finally, check the build locally by opening:<br>
+<code>http://localhost:8000/</code></p>
+<h5 id="B.-Rebuild-for-Online-and-push-to-Github">B. Rebuild for Online and push to Github<a class="anchor-link" href="#B.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
+<code>(blog) ~/blog-source $ pelican content -s publishconf.py</code></p>
+<p>Use the <code>ghp-import</code> tool to import the output folder to the <code>master</code> branch of your repository.</p>
+<p>Push your files to Github:<br>
+<code>$ git push origin master</code></p>
+<p>Finally, check your site is online at:<br>
+<code>https://your_username.github.io</code></p>
+<p>I found one challenge was setting the pelican-ipynb as a submodule, Github couldn't initially clone the repository.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="10.-Next-Steps">10. Next Steps<a class="anchor-link" href="#10.-Next-Steps">&#182;</a></h3><p>Now that the site is up online, add more content and if you want any extended features, revisit <code>publishconfi.py</code> to enable analytics, comments, and feeds.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Snippets">Snippets<a class="anchor-link" href="#Snippets">&#182;</a></h4><p>On Github, confirm in the repository settings under GitHub Pages 'Your site is published at <a href="https://your_username.github.io">https://your_username.github.io</a>'</p>
+<p>Everything commited to the <code>master</code> branch of your repository will be what Github Pages uses to publish, so any work in progress can be stored in branches for each post and merged to master as part of publishing.  A branch for one post can be made with:<br>
+<code>$ git checkout -b dev_branch_for_a_post</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            </div><!-- /.entry-content -->
+
+        <!-- CRD
+        </div>--><!-- /.eleven.columns -->
+
+     <!-- CRD <div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+      <li><a href="https://crdietrich.github.io/pages/about.html">About</a></li>
+  </ul>
+
+
+
+
+
+
+</div>-->
+<!-- CRD
+</div>--><!-- /.row -->
+
+<!-- CRD
+</section>-->
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <!-- CRD
+    <div class="container.nopad bg">
+        <footer id="credits" class="row">
+            <div style="float:left;">
+                <div>Powered by <a href="http://getpelican.com/">Pelicican</a> and <a href="https://github.com/crdietrich/crdietrich.github.io">Github</a></div>
+            </div>
+            <div style="float:right;">
+                <div>&copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/crdietrich">Colin Dietrich</a></div>
+                <br>
+            </div>
+        </footer>
+    </div>
+    -->
+
+  <script src="https://crdietrich.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://crdietrich.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://crdietrich.github.io/theme/js/plugins.js"></script>
+</body>
+</html>
