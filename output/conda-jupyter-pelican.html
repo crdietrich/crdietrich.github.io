@@ -1253,11 +1253,23 @@ output
 pelicanconf.py
 plugins
 publishconf.py
-__pycache__
 tasks.py
 themes</code></pre>
 <h5 id="master-branch">master branch<a class="anchor-link" href="#master-branch">&#182;</a></h5>
-<pre><code>TODO</code></pre>
+<pre><code>archives.html
+author
+authors.html
+categories.html
+category
+conda-jupyter-pelican.html
+content
+favicon.ico
+index.html
+pages
+plugins
+tag
+tags.html
+theme</code></pre>
 
 </div>
 </div>
@@ -1300,166 +1312,10 @@ themes</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="I.-Reference">I. Reference<a class="anchor-link" href="#I.-Reference">&#182;</a></h3><p>The precise build for this site is in environment_deployed.yml:</p>
-
-<pre><code>name: blog
-channels:
-- conda-forge
-- defaults
-dependencies:
-- blinker=1.4=py_1
-- feedgenerator=1.9=py_1
-- ghp-import=0.5.5=py_1
-- pelican=4.0.1=py_0
-- alabaster=0.7.10=py36_0
-- astroid=1.5.3=py36_0
-- babel=2.5.0=py36_0
-- backports=1.0=py36_0
-- backports.weakref=1.0rc1=py36_0
-- beautifulsoup4=4.6.0=py36_0
-- blas=1.0=mkl
-- bleach=1.5.0=py36_0
-- certifi=2016.2.28=py36_0
-- chardet=3.0.4=py36_0
-- curl=7.54.1=0
-- cycler=0.10.0=py36_0
-- dbus=1.10.20=0
-- decorator=4.1.2=py36_0
-- docutils=0.14=py36_0
-- entrypoints=0.2.3=py36_0
-- expat=2.1.0=0
-- fontconfig=2.12.1=3
-- freetype=2.5.5=2
-- git=2.11.1=0
-- glib=2.50.2=1
-- gst-plugins-base=1.8.0=0
-- gstreamer=1.8.0=0
-- html5lib=0.9999999=py36_0
-- icu=54.1=0
-- imagesize=0.7.1=py36_0
-- ipykernel=4.6.1=py36_0
-- ipython=6.1.0=py36_0
-- ipython_genutils=0.2.0=py36_0
-- ipywidgets=6.0.0=py36_0
-- isort=4.2.15=py36_0
-- jedi=0.10.2=py36_2
-- jinja2=2.9.6=py36_0
-- jpeg=9b=0
-- jsonschema=2.6.0=py36_0
-- jupyter=1.0.0=py36_3
-- jupyter_client=5.1.0=py36_0
-- jupyter_console=5.2.0=py36_0
-- jupyter_core=4.3.0=py36_0
-- krb5=1.13.2=0
-- lazy-object-proxy=1.3.1=py36_0
-- libffi=3.2.1=1
-- libgcc=5.2.0=0
-- libgfortran=3.0.0=1
-- libiconv=1.14=0
-- libpng=1.6.30=1
-- libprotobuf=3.4.0=0
-- libsodium=1.0.10=0
-- libssh2=1.8.0=0
-- libxcb=1.12=1
-- libxml2=2.9.4=0
-- markdown=2.6.9=py36_0
-- markupsafe=1.0=py36_0
-- matplotlib=2.0.2=np113py36_0
-- mistune=0.7.4=py36_0
-- mkl=2017.0.3=0
-- nbconvert=5.2.1=py36_0
-- nbformat=4.4.0=py36_0
-- notebook=5.0.0=py36_0
-- numpy=1.13.1=py36_0
-- numpydoc=0.7.0=py36_0
-- openssl=1.0.2l=0
-- pandas=0.20.3=py36_0
-- pandocfilters=1.4.2=py36_0
-- path.py=10.3.1=py36_0
-- pcre=8.39=1
-- pexpect=4.2.1=py36_0
-- pickleshare=0.7.4=py36_0
-- pip=9.0.1=py36_1
-- plotly=2.0.11=py36_0
-- prompt_toolkit=1.0.15=py36_0
-- protobuf=3.4.0=py36_0
-- psutil=5.2.2=py36_0
-- ptyprocess=0.5.2=py36_0
-- pycodestyle=2.3.1=py36_0
-- pyflakes=1.6.0=py36_0
-- pygments=2.2.0=py36_0
-- pylint=1.7.2=py36_0
-- pyparsing=2.2.0=py36_0
-- pyqt=5.6.0=py36_2
-- python=3.6.2=0
-- python-dateutil=2.6.1=py36_0
-- pytz=2017.2=py36_0
-- pyzmq=16.0.2=py36_0
-- qt=5.6.2=5
-- qtawesome=0.4.4=py36_0
-- qtconsole=4.3.1=py36_0
-- qtpy=1.3.1=py36_0
-- readline=6.2=2
-- requests=2.14.2=py36_0
-- rope=0.9.4=py36_1
-- scikit-learn=0.19.0=np113py36_0
-- scipy=0.19.1=np113py36_0
-- setuptools=36.4.0=py36_1
-- simplegeneric=0.8.1=py36_1
-- singledispatch=3.4.0.3=py36_0
-- sip=4.18=py36_0
-- six=1.10.0=py36_0
-- snowballstemmer=1.2.1=py36_0
-- sphinx=1.6.3=py36_0
-- sphinxcontrib=1.0=py36_0
-- sphinxcontrib-websupport=1.0.1=py36_0
-- spyder=3.2.3=py36_0
-- sqlite=3.13.0=0
-- tensorflow=1.3.0=0
-- tensorflow-base=1.3.0=py36h5293eaa_1
-- tensorflow-tensorboard=0.1.5=py36_0
-- terminado=0.6=py36_0
-- testpath=0.3.1=py36_0
-- tk=8.5.18=0
-- tornado=4.5.2=py36_0
-- traitlets=4.3.2=py36_0
-- unidecode=0.04.21=py36_0
-- wcwidth=0.1.7=py36_0
-- werkzeug=0.12.2=py36_0
-- wheel=0.29.0=py36_0
-- widgetsnbextension=3.0.2=py36_0
-- wrapt=1.10.11=py36_0
-- xz=5.2.3=0
-- zeromq=4.1.5=0
-- zlib=1.2.11=0
-- pip:
-  - colorlover==0.2.1
-  - cufflinks==0.14.6
-  - ipython-genutils==0.2.0
-  - jupyter-client==5.1.0
-  - jupyter-console==5.2.0
-  - jupyter-core==4.3.0
-  - nose==1.3.7
-  - prompt-toolkit==1.0.15
-  - retrying==1.3.3
-  - rope-py3k==0.9.4.post1
-prefix: /home/colin/anaconda3/envs/blog-source</code></pre>
+<h3 id="I.-Reference">I. Reference<a class="anchor-link" href="#I.-Reference">&#182;</a></h3><p>The environment file for this site is in <code>environment_deployed.yml</code> on the 'develop` branch.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
  
 
