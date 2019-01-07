@@ -1043,14 +1043,14 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using Conda environments is a great way to create reproducible, cross-platform data products.  I used virtual environments a bit before reading Jake VanderPlas' <a href="http://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/">great article</a> on conda and now I've completely made the switch.  Maintaining separate interpreters for projects is nice and so is avoiding compiling issues on Windows, however the best reason to use conda is the <code>environment.yml</code> file.</p>
-<p>Building a conda environment from a file is very similiar to using a Makefile - it will reliably recreate a Python interpreter with specific libraries installed.  This isn't useful at the start of a project but after wrangling data and installing libraries of various utility you will ideally end up with a product to share.  This is real power of the conda environment file: the ability to export the state of the conda environment including dependencies to a file and commit that file to the project repository.  Now you can deploy code, model outputs and the execution environment to a server, share it with a friend or redo your own work two years from now on a new machine with no fuss!</p>
-<p>The magic is as simple as:<br>
+<p>Using Conda is a great way to create reproducible, cross-platform data products.  I used virtual environments before reading Jake VanderPlas' <a href="http://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/">article</a> on conda and now I've completely made the switch.  Maintaining separate interpreters for projects is nice and so is avoiding compiling issues on Windows, however the best reason to use conda is the <code>environment.yml</code> file.</p>
+<p>Building a conda environment from a file is very similiar to using a Makefile - it will reliably recreate a Python interpreter with specific libraries installed.  This isn't useful at the start of a project but after wrangling data and installing libraries of various utility you will ideally end up with a product to share.  This is real power of the conda environment file: the ability to export the state of the environment including dependencies to a file and commit it to the project repository.  Now you can deploy code, model outputs and the execution environment to a server, share it with a friend or redo your own work two years from now on a new machine with no fuss!</p>
+<p>This is as simple as:<br>
 <code>$ conda env export &gt; environment.yml</code></p>
 <p>This command and reference for managing conda environments is available <a href="https://conda.io/docs/user-guide/tasks/manage-environments.html">here.</a></p>
-<p>What is truely next-level about conda is the ablity to install non-Python tools with conda.  From wrapping some <a href="https://anaconda.org/conda-forge/octave">MATLAB</a>, calling <a href="https://anaconda.org/r/r-ggplot2">ggplot</a> or just curious about <a href="https://anaconda.org/conda-forge/julia">Julia</a> you can reproducible include that in your project.</p>
-<p>Jupyter is flexible tool to explore and present results and needs very little introduction these days since even <a href="https://www.nature.com/articles/d41586-018-07196-1">Nature is writing about it</a>.  One of its less discussed features is relevant to conda, namely Jupyter's ability to use <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">multiple kernals</a>.  So after installing R via conda, you can run R scripts (or Julia or MATLAB or Perl etc).</p>
-<p>I figured a good Hello World to this blog would be the setup and in that regard I followed Vik Paruchuri''s post <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">Building a Data Science Portfolio: Setting Up a Blog</a> which lays out the pelican static site process well and discusses some trade offs.  Ducan Lock had a good review of <a href="http://duncanlock.net/blog/2016/03/05/how-i-upgraded-this-website-to-pelican-36/">changes required for newer installs of Pelican.</a></p>
+<p>What is next-level about conda is the ablity to install non-Python tools with conda.  From wrapping <a href="https://anaconda.org/conda-forge/octave">MATLAB</a>, calling <a href="https://anaconda.org/r/r-ggplot2">ggplot</a> or just taking <a href="https://anaconda.org/conda-forge/julia">Julia</a> for a spin you can reproducibly include these in your project.</p>
+<p>Jupyter is a tool that needs little introduction <a href="https://www.nature.com/articles/d41586-018-07196-1">these days</a>.  One of its less discussed features the ability to use <a href="https://github.com/jupyter/jupyter/wiki/Jupyteenvironmentsr-kernels">multiple kernals</a>.  So after installing a language kernal via conda, you can run R scripts or Julia or MATLAB or Perl etc right in the notebook.</p>
+<p>I decided a good Hello World for this blog would be its setup.  I initally followed Vik Paruchuri''s post <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">Building a Data Science Portfolio: Setting Up a Blog</a> which lays out the pelican static site process and discusses some trade offs.</p>
 
 </div>
 </div>
@@ -1059,7 +1059,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-Install-Miniconda-for-your-Platform">1. Install Miniconda for your Platform<a class="anchor-link" href="#1.-Install-Miniconda-for-your-Platform">&#182;</a></h3><p>I prefer to use Miniconda, installation and environment management instructions can be found at:</p>
+<h3 id="1.-Install-Miniconda-for-your-Platform">1. Install Miniconda for your Platform<a class="anchor-link" href="#1.-Install-Miniconda-for-your-Platform">&#182;</a></h3><p>I prefer to use Miniconda, installation and management instructions can be found at:</p>
 <p><a href="https://conda.io/docs/user-guide/install/index.html">https://conda.io/docs/user-guide/install/index.html</a></p>
 
 </div>
@@ -1108,12 +1108,12 @@ dependencies:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3.-Create-Conda-environment-and-activate-it">3. Create Conda environment and activate it<a class="anchor-link" href="#3.-Create-Conda-environment-and-activate-it">&#182;</a></h3><p>Inside <code>blog-source</code> run:<br>
-<code>$ conda env create -f environment.yml</code><br>
-To activate the conda environment in Mac OSX or Linux:</p>
-<p><code>$ source activate pelican-blog</code><br>
-and in Windows:</p>
-<p><code>&gt; activate pelican-blog</code><br>
-Check installed libraries work:</p>
+<code>$ conda env create -f environment.yml</code></p>
+<p>To activate the conda environment in Mac OSX or Linux:<br>
+<code>$ source activate pelican-blog</code></p>
+<p>and in Windows:<br>
+<code>&gt; activate pelican-blog</code></p>
+<p>Check installed libraries work:</p>
 
 <pre><code>(pelican-blog) ~/blog-source$ python  
 Python 3.6.2 |Continuum Analytics, Inc.| (default, Jul 20 2017, 13:51:32)  
@@ -1154,8 +1154,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>First confirm git is available:<br>
 <code>$ git --version  
 git version 2.7.4</code></p>
-<p>Then initialize a local repository in <code>blog-source</code>:<br>
-<code>(pelican-blog) ~/blog-source $ git init</code></p>
 <p>Create a destination for the Jupyter plugin:<br>
 <code>(pelican-blog) ~/blog-source $ mkdir plugins</code></p>
 <p>Install pelican-ipynb:<br>
@@ -1219,10 +1217,10 @@ Summary: Building a Python Blog using Conda and Pelican</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9.-Create-Git-branch-and-publish-to-Github">9. Create Git branch and publish to Github<a class="anchor-link" href="#9.-Create-Git-branch-and-publish-to-Github">&#182;</a></h3><p>Up to this point, we've successfully installed Python, Jupyter and Pelican, written content in Jupyter, converted it into static HTML and viewed it on a local server.  We have source files consisting of <code>.py</code> files, various configuration files and folders and Jupyter Notebooks while the the static HTML site we previewed locally is in the <code>output</code> folder.</p>
-<p>To publish our site, as currently storing in the <code>output</code> folder, we must move the files to the root directory and <code>master</code> branch of a git repository and push that to Github.  To keep everything together in one organized repository (and completely backed up on Github), we'll use a branch to store the source files.</p>
+<h3 id="9.-Create-Git-branch-and-publish-to-Github">9. Create Git branch and publish to Github<a class="anchor-link" href="#9.-Create-Git-branch-and-publish-to-Github">&#182;</a></h3><p>At this point, we've successfully installed Python, Jupyter and Pelican, written content in Jupyter, converted it into static HTML and viewed it on a local server.  We have source files consisting of <code>.py</code> files, various configuration files and folders and Jupyter Notebooks while the the static HTML site we previewed locally is in the <code>output</code> folder.</p>
+<p>To publish our site as currently storing in the <code>output</code> folder, we must move the files to the root directory of <code>blog-source</code> and <code>master</code> branch of a git repository and push that to Github.  To keep everything together in one organized repository (and completely backed up on Github), we'll use a branch to store the source files.</p>
 <h5 id="A.-Setup-Github-Repository">A. Setup Github Repository<a class="anchor-link" href="#A.-Setup-Github-Repository">&#182;</a></h5><p>Within your github account, create a repository called <code>your_username.github.io</code> without any files (no README, .gitignore, etc).  Once it's created on Github, copy the SSH link for adding to your local repository.</p>
-<h5 id="B.-Setup-Local-Repository">B. Setup Local Repository<a class="anchor-link" href="#B.-Setup-Local-Repository">&#182;</a></h5><p>On your local blog directory <code>blog-source</code>, initialize a new repository and add the new remote origin on github to the local git repository:</p>
+<h5 id="B.-Setup-Local-Repository">B. Setup Local Repository<a class="anchor-link" href="#B.-Setup-Local-Repository">&#182;</a></h5><p>In local blog directory <code>blog-source</code>, initialize a new repository and add the new remote origin on github to the local git repository:</p>
 <p><code>(blog) ~/blog-source $ git init  
 (blog) ~/blog-source $ git remote add origin git@github.com:your_username/your_username.github.io.git</code></p>
 <p>Next, create a new branch called <code>develop</code> to keep Python, Jupyter and Pelican source files in:<br>
@@ -1243,8 +1241,8 @@ Switched to a new branch 'develop'</code></p>
 <p>The command we'll use is:<br>
 <code>(blog) ~/code/blog-source $ ghp-import -b master output</code></p>
 <p>Since this isn't immediately obvious, let's break down the usage:<br>
-<code>-b master</code> = branch to write TO<br>
-<code>output</code> = directory in CURRENT branch to write FROM</p>
+<code>-b master</code> = branch to write TO, in this case <code>master</code><br>
+<code>output</code> = directory in CURRENT branch to write FROM, in this case <code>output</code></p>
 <p>After running <code>ghp-import</code>, we'll have two branches in <code>blog-source</code> that when active look like:</p>
 <h5 id="develop-branch">develop branch<a class="anchor-link" href="#develop-branch">&#182;</a></h5>
 <pre><code>content
@@ -1255,11 +1253,23 @@ output
 pelicanconf.py
 plugins
 publishconf.py
-__pycache__
 tasks.py
 themes</code></pre>
 <h5 id="master-branch">master branch<a class="anchor-link" href="#master-branch">&#182;</a></h5>
-<pre><code>TODO</code></pre>
+<pre><code>archives.html
+author
+authors.html
+categories.html
+category
+conda-jupyter-pelican.html
+content
+favicon.ico
+index.html
+pages
+plugins
+tag
+tags.html
+theme</code></pre>
 
 </div>
 </div>
@@ -1268,18 +1278,18 @@ themes</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><p>Always stay on the <code>develop</code> Git branch unless you're cleaning up extra files like <code>__pycache__</code> or adding another <code>.gitignore</code>.  <code>ghp-import</code> will do the work of updating the <code>master</code> branch.  If you do switch branches while on <code>master</code> be aware Jupyter may loose the Notebook file it has open as when the repository checks out a file structure without it present.  If that happens, you can lose unsaved work.</p>
+<h3 id="9.-Publishing-workflow">9. Publishing workflow<a class="anchor-link" href="#9.-Publishing-workflow">&#182;</a></h3><p>Always stay on the <code>develop</code> Git branch unless you're cleaning up extra files like <code>__pycache__</code> or adding another <code>.gitignore</code> - <code>ghp-import</code> will do the work of updating the <code>master</code> branch.  If you do switch branches be aware Jupyter may lose reference to the Notebook file it has open when the repository checks out another file state - if this happens, you can lose unsaved work.</p>
 <h5 id="A.-Work-Locally-and-check-static-HTML-build">A. Work Locally and check static HTML build<a class="anchor-link" href="#A.-Work-Locally-and-check-static-HTML-build">&#182;</a></h5><p>To preview your site locally, in <code>blog-source</code> run:<br>
 <code>(blog) ~/blog-source $ pelican content</code></p>
 <p>Then start a local test server with:<br>
 <code>(blog) ~/blog-source $ pelican -l</code></p>
-<p>Finally, check the build locally by opening:<br>
+<p>Check the build locally by opening:<br>
 <code>http://localhost:8000/</code></p>
-<p>Keep a remote copy of your source files on Github:<br>
+<p>Finally, keep a remote copy of your source files on Github:<br>
 <code>$ git push origin develop</code></p>
 <h5 id="B.-Rebuild-for-Online-and-push-to-Github">B. Rebuild for Online and push to Github<a class="anchor-link" href="#B.-Rebuild-for-Online-and-push-to-Github">&#182;</a></h5><p>To publish your site to Github Pages using site URLs, run:<br>
 <code>(blog) ~/blog-source $ pelican content -s publishconf.py</code></p>
-<p>Use the <code>ghp-import</code> tool to import the output folder of the <code>develop</code> branch to the root directory of the <code>master</code> branch of your repository.<br>
+<p>Use the <code>ghp-import</code> tool to import the output folder of the <code>develop</code> branch to the root directory of the <code>master</code> branch of your repository:<br>
 <code>$ ghp-import -b master output</code></p>
 <p>Push your files to Github:<br>
 <code>$ git push origin master</code></p>
@@ -1294,6 +1304,15 @@ themes</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="10.-Next-Steps">10. Next Steps<a class="anchor-link" href="#10.-Next-Steps">&#182;</a></h3><p>Now that the site is up online, add more Notebooks to <code>content</code> and if you want any extended features, revisit <code>publishconfi.py</code> to enable analytics, comments, and feeds.  You can use the <code>content</code> folder as a working directory for your projects, but I find organizing myself in a separate directory and conda environment a good first publishing step before including in the <code>blog-source</code> directory.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="I.-Reference">I. Reference<a class="anchor-link" href="#I.-Reference">&#182;</a></h3><p>The environment file for this site is in <code>environment_deployed.yml</code> on the 'develop` branch.</p>
 
 </div>
 </div>
